@@ -1,0 +1,11 @@
+# Mock file for todo items
+
+todos:
+  - task: Create React + TypeScript demo app
+    isDone: false
+  - task: Finish reading Head First Design Patterns book
+    isDone: false
+  - task: Do meditation in the morning
+    isDone: true
+
+   
