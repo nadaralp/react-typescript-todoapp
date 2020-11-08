@@ -1,5 +1,5 @@
 export default interface ITodo {
-    task: string | number;
+    task: string;
     isDone: boolean;
     creationDate: Date;
 }
