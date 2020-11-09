@@ -1,0 +1,26 @@
+// CSS Reset
+@import './reset.css';
+
+// import antd
+@import 'antd/dist/antd.css';
+
+
+// colors
+$main: #02050D;
+$primary: #183140;
+$secondary: #8FADBF;
+$neutral: #4A7A8C;
+$contrary: #D5E5F2;
+
+//variables
+$font-roboto: 'Roboto',
+sans-serif;
+
+
+
+// Generic
+body {
+    background-color: $main;
+    font-family: $font-roboto;
+    color: $contrary;
+}

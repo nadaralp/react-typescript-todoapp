@@ -24,5 +24,10 @@ export default class TodoService implements ITodoService {
         ]);
     }
 
+    deleteTodo(id: string): void {
+        const todosCopy = [...this.todos];
+        const filteredTodos: ITodo[] = todosCopy.filter(todo => todo.id !== id);
+        this.setTodos(filteredTodos);
+    }
 }
 

@@ -1,4 +1,5 @@
 import React, { FormEvent, ReactElement, useContext } from 'react'
+import { useForm } from 'react-hook-form';
 import { _TodoContext } from '../../infrastructure/store/useTodoStore';
 import ITodo from '../../services/Todo/ITodo';
 import Todo from '../../services/Todo/Todo';
@@ -7,23 +8,23 @@ interface Props {
 
 }
 
+type Inputs = {
+    todo: string,
+};
+
 function TodoForm({ }: Props): ReactElement {
-
     const { todoService } = useContext(_TodoContext);
+    const { register, handleSubmit, watch, errors } = useForm<Inputs>();
 
-    const onSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        console.log('hi');
+    const onSubmit = (data: Inputs): void => {
 
-        const newTodo: ITodo = new Todo("This is a test task", false);
-        todoService.addTodo(newTodo);
+        todoService.addTodo(new Todo(data.todo));
     }
 
-    console.log('rendering');
-
     return (
-        <form onSubmit={onSubmit} className="todo-form">
-            <input type="text" placeholder="Todo item" />
+        <form onSubmit={handleSubmit(onSubmit)} className="todo-form">
+            <input name="todo" type="text" placeholder="Todo item" ref={register({ required: true })} />
+            <p>{errors.todo && "todo is required"}</p>
             <button type="submit">Add Todo</button>
         </form>
     )
