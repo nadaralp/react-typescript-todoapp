@@ -7,10 +7,14 @@ export default class Todo implements ITodo {
     isDone: boolean;
     readonly creationDate: Date;
 
-    constructor(task: string, isDone: boolean = false) {
+    constructor(task: string, isDone: boolean = false, creationDate: string | undefined = undefined) {
         this.id = uuidv4();
         this.task = task;
         this.isDone = isDone;
+
+        if (creationDate) {
+            this.creationDate = new Date(creationDate);
+        }
         this.creationDate = new Date();
     }
 }

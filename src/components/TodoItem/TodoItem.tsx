@@ -1,7 +1,12 @@
-import React, { ReactElement, useContext, useState } from 'react'
+import React, { ReactElement, useContext } from 'react';
+import { Row, Col } from 'antd';
 import { _TodoContext } from '../../infrastructure/store/useTodoStore'
 import ITodo from '../../services/Todo/ITodo'
 import { renderTextBasedOnCondition } from './TodoItem.functions'
+import { CheckCircleFilled, DeleteFilled, EditFilled } from '@ant-design/icons';
+import './TodoItem.scss';
+import Column from 'antd/lib/table/Column';
+import DateTimeHelper from '../../infrastructure/common/DateTimeHelper';
 
 interface Props {
     todo: ITodo
@@ -15,6 +20,8 @@ interface Props {
 // Dom elements
 // Nice
 
+const dateTimeHelper: DateTimeHelper = new DateTimeHelper();
+
 function TodoItem({ todo }: Props): ReactElement {
     const { todoService } = useContext(_TodoContext);
 
@@ -23,9 +30,24 @@ function TodoItem({ todo }: Props): ReactElement {
     }
 
     return (
-        <div>
-            <h1>{todo.task}</h1>
-            {renderTextBasedOnCondition(todo.isDone, "Task has been completed", "Task yet to be completed")}
+        <div className="todo-item">
+            <Row align="middle">
+                <Col span={4}>
+                    <DeleteFilled className="todo-icon cursor-pointer" />
+                    <EditFilled className="todo-icon cursor-pointer" />
+                    <CheckCircleFilled className="todo-icon cursor-pointer" />
+                </Col>
+                <Col span={14}>
+                    <Row className="flex-column" wrap={false} >
+                        <Col>
+                            <h1 className="todo-title">{todo.task}</h1>
+                        </Col>
+                        <Col>
+                            <p className="todo-creationtime">{dateTimeHelper.readableDateFormat(todo.creationDate)}</p>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         </div>
     )
 }

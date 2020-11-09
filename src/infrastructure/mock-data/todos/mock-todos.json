@@ -1,19 +1,19 @@
 [{
         "id": "43411087-d2ce-4593-8d54-661d1547e6fe",
         "task": "Go for a run",
-        "creationDate": "2020-11-09",
+        "creationDate": "Mon Nov 09 2020 15:38:45 GMT+0200 (Israel Standard Time)",
         "isDone": false
     },
     {
         "id": "8b90b662-a006-4495-b1e1-42e7ffc1476e",
         "task": "Eat your veggies",
-        "creationDate": "2020-11-09",
+        "creationDate": "Mon Nov 09 2020 15:38:45 GMT+0200 (Israel Standard Time)",
         "isDone": false
     },
     {
         "id": "f0c972ce-9091-405c-bb9e-0b6cdb199c4a",
         "task": "Study because that's all I do :)",
-        "creationDate": "2020-11-09",
+        "creationDate": "Mon Nov 09 2020 15:38:45 GMT+0200 (Israel Standard Time)",
         "isDone": true
     }
 ]

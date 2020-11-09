@@ -1,0 +1,24 @@
+@import '../App/colors.scss';
+
+.todo-item {
+    margin-bottom: 2.4rem;
+}
+
+.todo-icon {
+    transform: scale(1.5);
+    margin-right: 30px;
+
+    svg {
+        color: $contrary;
+    }
+}
+
+.todo-title {
+    color: $neutral;
+    font-size: 22px;
+    margin-bottom: 0.6rem;
+}
+
+.todo-creationtime {
+    font-size: 14px;
+}
