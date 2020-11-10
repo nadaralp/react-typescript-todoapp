@@ -13,7 +13,7 @@ interface Props {
 
 function TodoProvider({ children }: Props): ReactElement {
 
-    const { TodoContext, todoService, initialTodoStoreValue } = useTodoStore();
+    const { TodoContext, initialTodoStoreValue } = useTodoStore();
 
     return (
         <TodoContext.Provider value={initialTodoStoreValue}>

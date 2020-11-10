@@ -1,11 +1,9 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement, useContext, useState } from 'react';
 import { Row, Col } from 'antd';
 import { _TodoContext } from '../../infrastructure/store/useTodoStore'
 import ITodo from '../../services/Todo/ITodo'
-import { renderTextBasedOnCondition } from './TodoItem.functions'
 import { CheckCircleFilled, DeleteFilled, EditFilled } from '@ant-design/icons';
 import './TodoItem.scss';
-import Column from 'antd/lib/table/Column';
 import DateTimeHelper from '../../infrastructure/common/DateTimeHelper';
 
 interface Props {
@@ -23,9 +21,10 @@ interface Props {
 const dateTimeHelper: DateTimeHelper = new DateTimeHelper();
 
 function TodoItem({ todo }: Props): ReactElement {
+    const [isComplete, setIsComplete] = useState<boolean>();
     const { todoService } = useContext(_TodoContext);
 
-    const handleTodoClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const handleDeleteClick = (event: React.MouseEvent<HTMLDivElement>) => {
         todoService.deleteTodo(todo.id);
     }
 
@@ -33,7 +32,7 @@ function TodoItem({ todo }: Props): ReactElement {
         <div className="todo-item">
             <Row align="middle">
                 <Col span={4}>
-                    <DeleteFilled className="todo-icon cursor-pointer" />
+                    <DeleteFilled onClick={handleDeleteClick} className="todo-icon cursor-pointer" />
                     <EditFilled className="todo-icon cursor-pointer" />
                     <CheckCircleFilled className="todo-icon cursor-pointer" />
                 </Col>

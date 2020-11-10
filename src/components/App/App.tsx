@@ -1,12 +1,15 @@
 import React from 'react';
+import TestProvider from '../../infrastructure/store/TestStore';
 import Todo from '../Todo/Todo';
 import './App.scss';
 
 function App() {
   return (
-    <div style={{ paddingTop: '10%' }} className="App">
-      <Todo />
-    </div>
+    <TestProvider>
+      <div style={{ paddingTop: '10%' }} className="App">
+        <Todo />
+      </div>
+    </TestProvider>
   );
 }
 
