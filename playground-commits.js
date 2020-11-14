@@ -7,3 +7,4 @@ console.log("commit 1 before invert");
 
 console.log("from feature branch 1");
 console.log("more from feature branch 1");
+console.log("more work");
