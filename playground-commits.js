@@ -7,3 +7,4 @@ console.log("commit 1 before invert");
 
 console.log("work from master branch");
 console.log("more work from master branch");
+console.log("more work");
