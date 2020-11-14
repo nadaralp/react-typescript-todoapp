@@ -1,26 +1,18 @@
-import React, { ReactElement } from 'react'
-import { useContext } from 'react';
-import { TestStore } from '../../infrastructure/store/TestStore';
-import TodoForm from '../TodoForm/TodoForm';
-import TodoList from '../TodoList/TodoList';
-import './Todo.scss';
+import { observer } from "mobx-react";
+import React, { ReactElement } from "react";
+import TodoForm from "../TodoForm/TodoForm";
+import { TodoList } from "../TodoList";
+import "./Todo.scss";
 
-interface Props {
+interface Props {}
 
-}
-
-function Todo({ }: Props): ReactElement {
-    const { setAniaml, setStoreName } = useContext(TestStore)!;
-
-    setStoreName("fweafgjwaeiuf");
-
-
+function Todo({}: Props): ReactElement {
     return (
         <main id="todo">
             <TodoList />
             <TodoForm />
         </main>
-    )
+    );
 }
 
-export default Todo
+export default observer(Todo);

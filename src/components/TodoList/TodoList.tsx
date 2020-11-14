@@ -1,20 +1,24 @@
-import React, { ReactElement, useContext, useState } from 'react'
-import getMockTodos from '../../infrastructure/mock-data/todos/InitializeTodos'
-import { renderTodos } from './TodoList.functions';
-import ITodo from '../../services/Todo/ITodo'
-import { _TodoContext } from '../../infrastructure/store/useTodoStore';
+import { observer, useObserver } from "mobx-react-lite";
+import React, { ReactElement } from "react";
+import { useTodoStoreContext } from "../../stores/Todo";
+import TodoTitle from "../Todo/components/TodoTitle";
+import TodoItem from "../TodoItem/TodoItem";
 
-interface Props {
-}
+interface Props {}
 
-function TodoList({ }: Props): ReactElement {
-    const { todoService } = useContext(_TodoContext);
+const TodoList = observer(({}: Props) => {
+    const { todos } = useTodoStoreContext();
+
+    console.log("rendering todo list");
 
     return (
         <section>
-            {renderTodos(todoService.getTodoItems)}
+            <TodoTitle />
+            {todos.map((todo) => (
+                <TodoItem todo={todo} key={todo.id} />
+            ))}
         </section>
-    )
-}
+    );
+})
 
-export default TodoList
+export default TodoList;

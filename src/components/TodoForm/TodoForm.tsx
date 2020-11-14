@@ -1,36 +1,37 @@
-import Search from 'antd/lib/input/Search';
-import React, { FormEvent, ReactElement, useContext, useState } from 'react'
-import { useForm } from 'react-hook-form';
-import { _TodoContext } from '../../infrastructure/store/useTodoStore';
-import ITodo from '../../services/Todo/ITodo';
-import Todo from '../../services/Todo/Todo';
+import Search from "antd/lib/input/Search";
+import React, { ReactElement, useState } from "react";
+import Todo from "../../services/Todo/Todo";
+import { useTodoStoreContext } from "../../stores/Todo";
 
-interface Props {
-
-}
+interface Props {}
 
 type Inputs = {
-    task: string,
+    task: string;
 };
 
-function TodoForm({ }: Props): ReactElement {
-    const { todoService } = useContext(_TodoContext);
+function TodoForm({}: Props): ReactElement {
     const [formState, setFormState] = useState<Inputs>({ task: "" });
-
+    const { addTodo } = useTodoStoreContext();
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setFormState({
             ...formState,
-            [event.target.name]: event.target.value
-        })
-    }
+            [event.target.name]: event.target.value,
+        });
+    };
 
-    const addTodo = (): void => {
-        todoService.addTodo(new Todo(formState.task));
-    }
+    const onSubmitHandle = (e: React.FormEvent): void => {
+        console.log("here");
+        e.preventDefault();
+        addTodo(new Todo(formState.task));
+    };
+
+    const onSearchHandle = (e: string): void => {
+        addTodo(new Todo(formState.task));
+    };
 
     return (
-        <form onSubmit={addTodo} className="todo-form">
+        <form onSubmit={onSubmitHandle} className="todo-form">
             {/* <input name="todo" type="text" placeholder="Todo item" ref={register({ required: true })} />
             <p>{errors.todo && "todo is required"}</p>
             <button type="submit">Add Todo</button> */}
@@ -42,10 +43,10 @@ function TodoForm({ }: Props): ReactElement {
                 enterButton="Add Task"
                 size="large"
                 onChange={onChange}
-                onSearch={addTodo}
+                onSearch={onSearchHandle}
             />
         </form>
-    )
+    );
 }
 
-export default TodoForm
+export default TodoForm;

@@ -4,7 +4,7 @@ import Todo from "../../../services/Todo/Todo";
 type ITodoDto = Omit<ITodo, "creationDate" | "id"> & { creationDate: string };
 
 
-export default function getMockTodos(): ITodo[] {
+export default function getMockTodos(): Todo[] {
     const ITodosDto: ITodoDto[] = require('./mock-todos.json') as ITodoDto[];
 
     return ITodosDto.map(todo => {
